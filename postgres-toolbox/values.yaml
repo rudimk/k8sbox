@@ -5,14 +5,14 @@
 replicaCount: 1
 
 image:
-  repository: rudester/postgres-toolbox:latest
+  repository: rudester/postgres-toolbox
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "latest"
 
 imagePullSecrets: []
 nameOverride: "postgres-toolbox"
-fullnameOverride: "postgres-toolbox-chart"
+fullnameOverride: "postgres-toolbox-app"
 
 serviceAccount:
   # Specifies whether a service account should be created
