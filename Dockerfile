@@ -1,6 +1,6 @@
 FROM ubuntu:18.04
 
-RUN apt update && apt install -y wget curl net-tools dnsutils telnet
+RUN apt update && apt install -y wget curl net-tools dnsutils telnet gnupg2
 
 RUN echo 'deb http://apt.postgresql.org/pub/repos/apt/ bionic-pgdg main' > /etc/apt/sources.list.d/pgdg.list
 
