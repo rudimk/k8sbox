@@ -10,4 +10,4 @@ RUN apt update && apt install -y postgresql-client=14+232.pgdg18.04+1
 
 RUN curl https://cli-assets.heroku.com/install.sh | sh
 
-CMD ["/bin/bash"]
+ENTRYPOINT ["/bin/bash", "-c", "--", "while true; do sleep 30; done;"]
