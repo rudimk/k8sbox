@@ -24,7 +24,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
-          password: ${{ secrets.GH_TOKEN }}
+          password: ${{ secrets.GHCR_TOKEN }}
       - name: Checkout the postgres-toolbox repo
         uses: actions/checkout@v3
         with:
@@ -42,7 +42,7 @@ jobs:
           context: .
           push: true
           tags: |
-            rudester/postgres-toolbox:${{ steps.tagger.outputs.tag }}-amd64
+            rudester/postgres-toolbox:${{ steps.tagger.outputs.tag }}
             rudester/postgres-toolbox:latest
-            ghcr.io/rudimk/postgres-toolbox:${{ steps.tagger.outputs.tag }}-amd64
+            ghcr.io/rudimk/postgres-toolbox:${{ steps.tagger.outputs.tag }}
             ghcr.io/rudimk/postgres-toolbox:latest
