@@ -24,13 +24,13 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.GH_TOKEN }}
       - name: Checkout the postgres-toolbox repo
         uses: actions/checkout@v3
         with:
           submodules: true
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_TOKEN }}
       - name: Get tag
         id: tagger
         run: echo "::set-output name=tag::$(git describe --tags HEAD)"
@@ -64,13 +64,13 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.GH_TOKEN }}
       - name: Checkout the eks-cluster-manager repo
         uses: actions/checkout@v3
         with:
           submodules: true
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_TOKEN }}
       - name: Get tag
         id: tagger
         run: echo "::set-output name=tag::$(git describe --tags HEAD)"
