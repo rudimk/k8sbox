@@ -43,46 +43,6 @@ jobs:
           push: true
           tags: |
             rudester/postgres-toolbox:${{ steps.tagger.outputs.tag }}-amd64
-            porterhub/porter-eks-cluster-manager:latest-amd64
+            rudester/postgres-toolbox:latest
             ghcr.io/rudimk/postgres-toolbox:${{ steps.tagger.outputs.tag }}-amd64
-            ghcr.io/rudimk/postgres-toolbox:latest-amd64
-  build-arm64-image:
-    runs-on: ubicloud-standard-2-arm
-    environment: production
-    steps:
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-      - name: Login to Docker Hub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-      - name: Login to GitHub Package Registry
-        uses: docker/login-action@v2
-        with:
-          registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.GH_TOKEN }}
-      - name: Checkout the eks-cluster-manager repo
-        uses: actions/checkout@v3
-        with:
-          submodules: true
-          fetch-depth: 0
-          token: ${{ secrets.GH_TOKEN }}
-      - name: Get tag
-        id: tagger
-        run: echo "::set-output name=tag::$(git describe --tags HEAD)"
-      - name: Build and push
-        uses: docker/build-push-action@v4
-        env:
-          DOCKER_BUILDKIT: 1
-        with:
-          context: .
-          push: true
-          tags: |
-            rudester/postgres-toolbox:${{ steps.tagger.outputs.tag }}-arm64
-            rudester/postgres-toolbox:latest-arm64
-            ghcr.io/rudimk/postgres-toolbox:${{ steps.tagger.outputs.tag }}-arm64
-            ghcr.io/rudimk/postgres-toolbox:latest-arm64
+            ghcr.io/rudimk/postgres-toolbox:latest
