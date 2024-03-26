@@ -1,12 +1,8 @@
-FROM ubuntu:18.04
+FROM ubuntu:23.10
 
-RUN apt update && apt install -y wget curl net-tools dnsutils telnet gnupg2
+RUN apt update && apt install -y wget curl net-tools dnsutils telnet gnupg2 postgresql-client redis-tools
 
-RUN echo 'deb http://apt.postgresql.org/pub/repos/apt/ bionic-pgdg main' > /etc/apt/sources.list.d/pgdg.list
-
-RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
-
-RUN apt update && apt install -y postgresql-client=14+232.pgdg18.04+1
+RUN wget https://github.com/unfrl/dug/releases/download/0.0.92/dug.0.0.92.linux-x64.deb && dpkg -i dug.0.0.92.linux-x64.deb && rm -r dug.0.0.92.linux-x64.deb
 
 RUN curl https://cli-assets.heroku.com/install.sh | sh
 
