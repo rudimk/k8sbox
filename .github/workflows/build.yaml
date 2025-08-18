@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build-amd64-image:
+  build:
     strategy:
       fail-fast: false
       matrix:
@@ -44,7 +44,7 @@ jobs:
           DOCKER_BUILDKIT: 1
         with:
           context: .
-          platforms: $${{ matrix.os.platform }}
+          platforms: ${{ matrix.os.platform }}
           build-args: |
             AWS_CLI_TARGET=${{ matrix.os.aws_cli_target }}
           push: true
