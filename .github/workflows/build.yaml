@@ -10,8 +10,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [{platform: linux/amd64, aws_cli_target: x86_64}, {platform: linux/arm64, aws_cli_target: aarch64}]
-    runs-on: ubicloud-standard-8
+        os: [{platform: linux/amd64, aws_cli_target: x86_64, runner: ubicloud-standard-8}, {platform: linux/arm64, aws_cli_target: aarch64, runner: ubicloud-standard-8-arm}]
+    runs-on: ${{ matrix.os.runner }}
     environment: production
     steps:
       - name: Set up QEMU
