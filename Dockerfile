@@ -27,6 +27,6 @@ RUN case ${TARGETARCH} in \
     echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && \
     apt update && apt install -y google-cloud-cli && \
     # Clean up
-    rm -rf /var/lib/apt/lists/* awscliv2.zip aws azureInstaller.sh
+    rm -rf /var/lib/apt/lists/* awscliv2.zip azureInstaller.sh
 
 ENTRYPOINT ["/bin/bash", "-c", "--", "while true; do sleep 30; done;"]
