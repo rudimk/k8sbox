@@ -2,7 +2,7 @@ FROM ubuntu:24.04
 
 ARG TARGETARCH
 
-RUN apt update && apt install -y wget curl net-tools dnsutils telnet traceroute gnupg2 postgresql-client redis-tools
+RUN apt update && apt install -y wget curl net-tools dnsutils telnet traceroute gnupg2 postgresql-client redis-tools unzip
 
 RUN curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
 
