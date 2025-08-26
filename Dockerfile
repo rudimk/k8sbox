@@ -19,4 +19,6 @@ RUN case "$TARGETARCH" in \
     ./aws/install && \
     rm -rf awscliv2.zip aws
 
+RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
+
 ENTRYPOINT ["/bin/bash", "-c", "--", "while true; do sleep 30; done;"]
