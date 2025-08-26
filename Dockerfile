@@ -2,7 +2,7 @@ FROM ubuntu:24.04
 
 ARG TARGETARCH
 
-RUN apt update && apt install -y wget curl net-tools dnsutils telnet traceroute gnupg2 postgresql-client redis-tools unzip
+RUN apt update && apt install -y wget curl net-tools dnsutils telnet traceroute gnupg2 postgresql-client redis-tools unzip apt-transport-https ca-certificates
 
 RUN curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
 
@@ -20,5 +20,10 @@ RUN case "$TARGETARCH" in \
     rm -rf awscliv2.zip aws
 
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
+
+RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg && \
+    echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && \
+    apt update && apt install google-cloud-cli 
+
 
 ENTRYPOINT ["/bin/bash", "-c", "--", "while true; do sleep 30; done;"]
