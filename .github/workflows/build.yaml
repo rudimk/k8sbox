@@ -57,4 +57,4 @@ jobs:
           docker buildx imagetools create \
             --tag porterhub/k8sbox:${{ steps.tagger.outputs.tag }} \
             --tag porterhub/k8sbox:latest \
-            rudester/k8sbox:latest:latest
+            rudester/k8sbox:latest
