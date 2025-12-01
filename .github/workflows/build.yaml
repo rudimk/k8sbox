@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build-amd64-image:
+  build-multiplatform-image:
     runs-on: ubicloud-standard-8
     environment: production
     steps:
