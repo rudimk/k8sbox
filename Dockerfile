@@ -23,7 +23,15 @@ RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
 
 RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg && \
     echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && \
-    apt update && apt install -y google-cloud-cli 
+    apt update && apt install -y google-cloud-cli
+
+RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/${TARGETARCH}/kubectl" && \
+    install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+
+RUN curl -fsSL -o helmInstaller.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 && \
+    chmod +x helmInstaller.sh && \
+    ./helmInstaller.sh && \
+    rm -r helmInstaller.sh
 
 RUN curl -fsSL https://install.porter.run > porterInstaller.sh && \
     sed -i 's/sudo //g' porterInstaller.sh && \
