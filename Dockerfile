@@ -2,7 +2,13 @@ FROM ubuntu:24.04
 
 ARG TARGETARCH
 
-RUN apt update && apt install -y vim wget curl net-tools dnsutils telnet traceroute gnupg2 postgresql-client redis-tools unzip apt-transport-https ca-certificates openssh-client
+RUN apt update && apt install -y vim wget curl net-tools dnsutils telnet traceroute gnupg2 redis-tools unzip apt-transport-https ca-certificates openssh-client
+
+RUN install -d /usr/share/postgresql-common/pgdg && \
+    curl -fsSL -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc https://www.postgresql.org/media/keys/ACCC4CF8.asc && \
+    echo "deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt $(. /etc/os-release && echo $VERSION_CODENAME)-pgdg main" > /etc/apt/sources.list.d/pgdg.list && \
+    apt update && apt install -y postgresql-client-17 && \
+    psql --version | grep -q ' 17\.'
 
 RUN curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
 
